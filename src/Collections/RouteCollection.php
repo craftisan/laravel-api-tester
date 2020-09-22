@@ -1,16 +1,17 @@
 <?php
 
-namespace Asvae\ApiTester\Collections;
+namespace Craftisan\ApiTester\Collections;
 
 use Illuminate\Support\Collection;
 
 /**
  * Class RouteCollection
  *
- * @package \Asvae\ApiTester
+ * @package \Craftisan\ApiTester
  */
 class RouteCollection extends Collection
 {
+
     /**
      * Include routes that match patterns.
      *
@@ -42,7 +43,6 @@ class RouteCollection extends Collection
         });
     }
 
-
     /**
      * Exclude routes that match patterns.
      *
@@ -64,22 +64,23 @@ class RouteCollection extends Collection
     /**
      * @param array $route
      * @param array $pattern
+     *
      * @return bool
      */
     private function isRouteMatchesPattern(array $route, array $pattern)
     {
         foreach ($route as $key => $value) {
-            if (! array_key_exists($key, $pattern)) {
+            if (!array_key_exists($key, $pattern)) {
                 continue;
             }
 
-            if(is_array($value)){
+            if (is_array($value)) {
                 $value = implode(',', $value);
             }
 
-            $regex = '#'.$pattern[$key].'#';
+            $regex = '#' . $pattern[$key] . '#';
 
-            return ! ! preg_match($regex, $value);
+            return !!preg_match($regex, $value);
         }
 
         return true;

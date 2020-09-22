@@ -1,19 +1,18 @@
 <?php
 
-namespace Asvae\ApiTester\Storages;
+namespace Craftisan\ApiTester\Storages;
 
-
-use Asvae\ApiTester\Collections\RequestCollection;
-use Asvae\ApiTester\Contracts\StorageInterface;
-use Asvae\ApiTester\Entities\RequestEntity;
-use Asvae\Exceptions\FireBaseException;
+use Craftisan\ApiTester\Collections\RequestCollection;
+use Craftisan\ApiTester\Contracts\StorageInterface;
+use Craftisan\ApiTester\Entities\RequestEntity;
+use Craftisan\Exceptions\FireBaseException;
 use Firebase\FirebaseLib;
 use Firebase\Token\TokenGenerator;
-use Mockery\CountValidator\Exception;
 use Symfony\Component\Debug\Exception\ClassNotFoundException;
 
 class FireBaseStorage implements StorageInterface
 {
+
     /**
      * @var FirebaseLib
      */
@@ -31,6 +30,7 @@ class FireBaseStorage implements StorageInterface
 
     /**
      * FireBaseStorage constructor.
+     *
      * @param RequestCollection $collection
      * @param TokenGenerator $tokens
      * @param $base
@@ -59,6 +59,7 @@ class FireBaseStorage implements StorageInterface
      * Put data to resource.
      *
      * @param $data RequestCollection
+     *
      * @return void
      */
     public function put(RequestCollection $data)
@@ -76,7 +77,6 @@ class FireBaseStorage implements StorageInterface
             $this->putToFireBase($request);
         }
     }
-
 
     /**
      * @param RequestCollection $data
@@ -120,6 +120,7 @@ class FireBaseStorage implements StorageInterface
 
     /**
      * @param array $data
+     *
      * @return RequestCollection
      */
     protected function makeCollection($data = [])

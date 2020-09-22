@@ -1,23 +1,23 @@
 <?php
 
-namespace Asvae\ApiTester\Repositories;
+namespace Craftisan\ApiTester\Repositories;
 
-use Asvae\ApiTester\Collections\RouteCollection;
-use Asvae\ApiTester\Contracts\RouteRepositoryInterface;
-use Asvae\ApiTester\Entities\RouteInfo;
+use Craftisan\ApiTester\Collections\RouteCollection;
+use Craftisan\ApiTester\Contracts\RouteRepositoryInterface;
+use Craftisan\ApiTester\Entities\RouteInfo;
 use Dingo\Api\Routing\Router;
 use Illuminate\Contracts\Config\Repository as Config;
-use Illuminate\Contracts\Foundation\Application;
 
 /**
  * Class RouteDingoRepository
  *
- * @package \Asvae\ApiTester\Repositories
+ * @package \Craftisan\ApiTester\Repositories
  */
 class RouteDingoRepository implements RouteRepositoryInterface
 {
+
     /**
-     * @type \Asvae\ApiTester\Collections\RouteCollection
+     * @type \Craftisan\ApiTester\Collections\RouteCollection
      */
     protected $routes;
 
@@ -36,9 +36,9 @@ class RouteDingoRepository implements RouteRepositoryInterface
                     'headers' => [
                         [
                             'key' => 'Accept',
-                            'value' => "application/{$standardsTree}.{$subtype}.{$versionName}+{$defaultFormat}"
-                        ]
-                    ]
+                            'value' => "application/{$standardsTree}.{$subtype}.{$versionName}+{$defaultFormat}",
+                        ],
+                    ],
                 ]))->toArray();
                 $this->routes->push($routeInfo);
             }
@@ -49,7 +49,7 @@ class RouteDingoRepository implements RouteRepositoryInterface
      * @param array $match
      * @param array $except
      *
-     * @return \Asvae\ApiTester\Collections\RouteCollection
+     * @return \Craftisan\ApiTester\Collections\RouteCollection
      */
     public function get($match = [], $except = [])
     {

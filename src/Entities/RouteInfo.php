@@ -1,17 +1,22 @@
 <?php
 
-namespace Asvae\ApiTester\Entities;
+namespace Craftisan\ApiTester\Entities;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Foundation\Http\FormRequest;
-use JsonSerializable;
 use Illuminate\Support\Str;
+use JsonSerializable;
+use ReflectionClass;
+use ReflectionException;
+use ReflectionFunction;
+use ReflectionMethod;
 
 /**
  * Frontend ready route
  */
 class RouteInfo implements Arrayable, JsonSerializable
 {
+
     /**
      * @var \ReflectionFunctionAbstract|null
      */
@@ -61,13 +66,13 @@ class RouteInfo implements Arrayable, JsonSerializable
     public function toArray()
     {
         return array_merge([
-            'name'    => $this->route->getName(),
+            'name' => $this->route->getName(),
             'methods' => $this->getMethods(),
-            'domain'  => $this->route->domain(),
-            'path'    => $this->preparePath(),
-            'action'  => $this->route->getAction(),
-            'wheres'  => $this->extractWheres(),
-            'errors'  => $this->errors,
+            'domain' => $this->route->domain(),
+            'path' => $this->preparePath(),
+            'action' => $this->route->getAction(),
+            'wheres' => $this->extractWheres(),
+            'errors' => $this->errors,
         ], $this->getMeta(), $this->options);
     }
 
@@ -82,6 +87,7 @@ class RouteInfo implements Arrayable, JsonSerializable
         if (method_exists($this->route, 'getMethods')) {
             return $this->route->getMethods();
         }
+
         // Laravel 5.4+
         return $this->route->methods();
     }
@@ -95,7 +101,7 @@ class RouteInfo implements Arrayable, JsonSerializable
 
         // Хак, чтобы в json всегда был объект
         if (empty($wheres)) {
-            return (object) [];
+            return (object)[];
         }
 
         return $wheres;
@@ -116,7 +122,7 @@ class RouteInfo implements Arrayable, JsonSerializable
     {
         $reflection = $this->getActionReflection();
 
-        if (! is_null($reflection)) {
+        if (!is_null($reflection)) {
             return $reflection->getDocComment();
         }
 
@@ -136,7 +142,7 @@ class RouteInfo implements Arrayable, JsonSerializable
             // TODO Write the reasoning behind following lines.
             try {
                 $class = $parameter->getClass();
-            } catch (\ReflectionException $e) {
+            } catch (ReflectionException $e) {
                 break;
             }
 
@@ -173,7 +179,7 @@ class RouteInfo implements Arrayable, JsonSerializable
             return $this->routeReflection;
         }
 
-        return $this->routeReflection = new \ReflectionClass($this->route);
+        return $this->routeReflection = new ReflectionClass($this->route);
     }
 
     /**
@@ -189,28 +195,28 @@ class RouteInfo implements Arrayable, JsonSerializable
 
         // Если это строка и она содержит @, значит мы имем дело с методом контроллера.
         if (is_string($uses) && Str::contains($uses, '@')) {
-            list($controller, $action) = explode('@', $uses);
+            [$controller, $action] = explode('@', $uses);
 
             // Если нет контроллера.
-            if (! class_exists($controller)) {
+            if (!class_exists($controller)) {
                 $this->setError('uses', 'controller does not exists');
 
                 return null;
             }
 
             // Если нет метода в контроллере.
-            if (! method_exists($controller, $action)) {
+            if (!method_exists($controller, $action)) {
                 $this->setError('uses', 'controller@method does not exists');
 
                 return null;
             }
 
-            return $this->actionReflection = new \ReflectionMethod($controller,
+            return $this->actionReflection = new ReflectionMethod($controller,
                 $action);
         }
 
         if (is_callable($uses)) {
-            return $this->actionReflection = new \ReflectionFunction($uses);
+            return $this->actionReflection = new ReflectionFunction($uses);
         }
 
         $this->setError('uses', 'route uses is not valid');
@@ -233,8 +239,9 @@ class RouteInfo implements Arrayable, JsonSerializable
      *
      * @return string
      */
-    protected function getUri(){
-        if (method_exists($this->route, 'getPath')){
+    protected function getUri()
+    {
+        if (method_exists($this->route, 'getPath')) {
             // Laravel <5.4
             return $this->route->getPath();
         }
@@ -255,9 +262,9 @@ class RouteInfo implements Arrayable, JsonSerializable
     {
         if ($this->addMeta) {
             return [
-                'annotation'  => $this->extractAnnotation(),
+                'annotation' => $this->extractAnnotation(),
                 'formRequest' => $this->extractFormRequest(),
-                'errors'      => $this->errors,
+                'errors' => $this->errors,
             ];
         }
 

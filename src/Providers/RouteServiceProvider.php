@@ -1,16 +1,16 @@
 <?php
 
-namespace Asvae\ApiTester\Providers;
+namespace Craftisan\ApiTester\Providers;
 
-use Asvae\ApiTester\Http\Middleware\DebugState;
-use Asvae\ApiTester\Http\Middleware\DetectRoute;
-use Asvae\ApiTester\Http\Middleware\PreventRedirect;
+use Craftisan\ApiTester\Http\Middleware\DetectRoute;
+use Craftisan\ApiTester\Http\Middleware\PreventRedirect;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
+
     /**
      * @type \Illuminate\Foundation\Http\Kernel
      */
@@ -19,20 +19,22 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param  Router $router
+     * @param Router $router
      *
      * @return void
      */
     public function map(Router $router)
     {
-        $router->group([
-            'as' => 'api-tester.',
-            'prefix' => config('api-tester.route'),
-            'namespace' => $this->getNamespace(),
-            'middleware' => $this->getMiddleware(),
-        ], function () {
-            $this->requireRoutes();
-        });
+        if (config('api-tester.enabled')) {
+            $router->group([
+                'as' => 'api-tester.',
+                'prefix' => config('api-tester.route'),
+                'namespace' => $this->getNamespace(),
+                'middleware' => $this->getMiddleware(),
+            ], function () {
+                $this->requireRoutes();
+            });
+        }
     }
 
     /**
@@ -65,7 +67,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function getNamespace()
     {
-        return 'Asvae\ApiTester\Http\Controllers';
+        return 'Craftisan\ApiTester\Http\Controllers';
     }
 
     /**

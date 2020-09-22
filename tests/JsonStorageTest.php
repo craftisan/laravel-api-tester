@@ -1,7 +1,8 @@
 <?php
-use Asvae\ApiTester\Collections\RequestCollection;
-use Asvae\ApiTester\Entities\RequestEntity;
-use Asvae\ApiTester\Storages\JsonStorage;
+
+use Craftisan\ApiTester\Collections\RequestCollection;
+use Craftisan\ApiTester\Entities\RequestEntity;
+use Craftisan\ApiTester\Storages\JsonStorage;
 use Illuminate\Filesystem\Filesystem;
 
 /**
@@ -11,8 +12,9 @@ use Illuminate\Filesystem\Filesystem;
  */
 class JsonStorageTest extends TestCase
 {
+
     /**
-     * @type \Asvae\ApiTester\Storages\JsonStorage
+     * @type \Craftisan\ApiTester\Storages\JsonStorage
      */
     protected $storage;
 
@@ -44,17 +46,17 @@ class JsonStorageTest extends TestCase
     /**
      *
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->dir = __DIR__ . '/tmp';
         $this->storageFilePath = $this->dir . '/test.db';
 
         $this->referenceData = [
-            ['id'=> '111', 'path' => 'aaaa'],
-            ['id'=> '222', 'path' => 'bbbb'],
-            ['id'=> '333', 'path' => 'cccc'],
-            ['id'=> '444', 'path' => 'dddd'],
-            ['id'=> '555', 'path' => 'eeee'],
+            ['id' => '111', 'path' => 'aaaa'],
+            ['id' => '222', 'path' => 'bbbb'],
+            ['id' => '333', 'path' => 'cccc'],
+            ['id' => '444', 'path' => 'dddd'],
+            ['id' => '555', 'path' => 'eeee'],
         ];
 
         $this->referenceCollection = (new RequestCollection())->load($this->referenceData);
@@ -76,8 +78,9 @@ class JsonStorageTest extends TestCase
 
     public function testStoringData()
     {
-        $this->referenceCollection->each(function(RequestEntity $value){
-            $value->setDirty(); $value->exists();
+        $this->referenceCollection->each(function (RequestEntity $value) {
+            $value->setDirty();
+            $value->exists();
         });
 
         $this->storage->put($this->referenceCollection);

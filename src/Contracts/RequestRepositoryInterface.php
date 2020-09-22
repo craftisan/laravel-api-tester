@@ -1,20 +1,21 @@
 <?php
 
-namespace Asvae\ApiTester\Contracts;
+namespace Craftisan\ApiTester\Contracts;
 
-use Asvae\ApiTester\Entities\RequestEntity;
+use Craftisan\ApiTester\Entities\RequestEntity;
 
 interface RequestRepositoryInterface
 {
+
     /**
      * @param $id
      *
-     * @return \Asvae\ApiTester\Entities\RequestEntity
+     * @return \Craftisan\ApiTester\Entities\RequestEntity
      */
     public function find($id);
 
     /**
-     * @param \Asvae\ApiTester\Entities\RequestEntity $request
+     * @param \Craftisan\ApiTester\Entities\RequestEntity $request
      *
      * @return void
      */
@@ -28,7 +29,7 @@ interface RequestRepositoryInterface
     public function exists($id);
 
     /**
-     * @return \Asvae\ApiTester\Collections\RequestCollection|\Asvae\ApiTester\Entities\RequestEntity[]
+     * @return \Craftisan\ApiTester\Collections\RequestCollection|\Craftisan\ApiTester\Entities\RequestEntity[]
      */
     public function all();
 

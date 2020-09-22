@@ -1,14 +1,15 @@
 <?php
 
-namespace Asvae\ApiTester;
+namespace Craftisan\ApiTester;
 
-use Asvae\ApiTester\Providers\RepositoryServiceProvider;
-use Asvae\ApiTester\Providers\RouteServiceProvider;
-use Asvae\ApiTester\Providers\StorageServiceProvide;
-use Asvae\ApiTester\Providers\ViewServiceProvider;
+use Craftisan\ApiTester\Providers\RepositoryServiceProvider;
+use Craftisan\ApiTester\Providers\RouteServiceProvider;
+use Craftisan\ApiTester\Providers\StorageServiceProvide;
+use Craftisan\ApiTester\Providers\ViewServiceProvider;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
+
     public function register()
     {
         if (!defined('API_TESTER_PATH')) {

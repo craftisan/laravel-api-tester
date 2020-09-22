@@ -1,14 +1,15 @@
 <?php
 
-namespace Asvae\ApiTester\Entities;
+namespace Craftisan\ApiTester\Entities;
 
 /**
  * Class Request
  *
- * @package \Asvae\ApiTester\Entities
+ * @package \Craftisan\ApiTester\Entities
  */
 class RequestEntity extends BaseEntity
 {
+
     /**
      * @var bool
      */
@@ -23,7 +24,6 @@ class RequestEntity extends BaseEntity
      * @var bool
      */
     protected $toDelete = false;
-
 
     /**
      * @var bool

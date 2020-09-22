@@ -13,7 +13,7 @@ Application main page.
                     <div class="nav-right">
                         <a class="nav-item"
                            title="Github"
-                           href="https://github.com/asvae/laravel-api-tester"
+                           href="https://github.com/craftisan/laravel-api-tester"
                            target="_blank"
                         >
                             <i class="fa fa-github nav-icon"></i>
@@ -27,14 +27,14 @@ Application main page.
                         </a>
                         <a class="nav-item"
                            title="Fork me"
-                           href="https://github.com/asvae/laravel-api-tester/fork"
+                           href="https://github.com/craftisan/laravel-api-tester/fork"
                            target="_blank"
                         >
                             <i class="fa fa-code-fork nav-icon"></i>
                         </a>
                         <a class="nav-item"
                            title="Issues"
-                           href="https://github.com/asvae/laravel-api-tester/issues"
+                           href="https://github.com/craftisan/laravel-api-tester/issues"
                            target="_blank"
                         >
                             <i class="fa fa-bug nav-icon"></i>
@@ -58,17 +58,17 @@ Application main page.
 </template>
 
 <script>
-    import vmListsBlock from './components/lists-block/lists-block.vue'
-    import vmActionPanel from './components/action-panel/action-panel.vue'
-    import vmRequestPoster from './components/edit-block/edit-block.vue'
+import vmListsBlock from './components/lists-block/lists-block.vue'
+import vmActionPanel from './components/action-panel/action-panel.vue'
+import vmRequestPoster from './components/edit-block/edit-block.vue'
 
-    export default {
-        components: {
-            vmActionPanel,
-            vmListsBlock,
-            vmRequestPoster,
-        },
-    }
+export default {
+  components: {
+    vmActionPanel,
+    vmListsBlock,
+    vmRequestPoster,
+  },
+}
 </script>
 
 We decided to forsake all the mobile support stuff. It requires bulma @media

@@ -1,6 +1,6 @@
 <?php
 
-namespace Asvae\ApiTester\Entities;
+namespace Craftisan\ApiTester\Entities;
 
 use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
@@ -11,10 +11,11 @@ use JsonSerializable;
 /**
  * Class BaseEntity.
  *
- * @package Asvae\ApiTester\Entities
+ * @package Craftisan\ApiTester\Entities
  */
 abstract class BaseEntity implements Arrayable, Jsonable, ArrayAccess, JsonSerializable
 {
+
     /**
      * Names of attributes that can be filled.
      *
@@ -64,7 +65,7 @@ abstract class BaseEntity implements Arrayable, Jsonable, ArrayAccess, JsonSeria
     /**
      * Convert the object to its JSON representation.
      *
-     * @param  int $options
+     * @param int $options
      *
      * @return string
      */
@@ -82,7 +83,7 @@ abstract class BaseEntity implements Arrayable, Jsonable, ArrayAccess, JsonSeria
      */
     protected function filterFillable(array $data)
     {
-        return array_only($data, $this->fillable);
+        return Arr::only($data, $this->fillable);
     }
 
     /**

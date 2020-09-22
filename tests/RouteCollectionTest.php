@@ -1,9 +1,9 @@
 <?php
 
-use Asvae\ApiTester\Collections\RouteCollection;
+use Craftisan\ApiTester\Collections\RouteCollection;
 
 /**
- * @covers Asvae\ApiTester\Collections\RouteCollection
+ * @covers Craftisan\ApiTester\Collections\RouteCollection
  */
 class RouteCollectionTest extends TestCase
 {
@@ -19,36 +19,36 @@ class RouteCollectionTest extends TestCase
     private $defaultRoute = [
         'method' => 'GET',
         'action' => '',
-        'name'   => null,
-        'path'   => 'api-tester',
+        'name' => null,
+        'path' => 'api-tester',
     ];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $routes = $this->fakeRoutes([
             [
                 'method' => ['GET', 'HEAD'],
-                'path'   => 'user',
+                'path' => 'user',
             ],
             [
                 'method' => ['GET', 'HEAD'],
-                'path'   => 'user/{id}',
+                'path' => 'user/{id}',
             ],
             [
                 'method' => ['POST'],
-                'path'   => 'user',
+                'path' => 'user',
             ],
             [
                 'method' => ['DELETE'],
-                'path'   => 'user/{id}',
+                'path' => 'user/{id}',
             ],
             [
                 'method' => ['PUT', 'PATCH'],
-                'path'   => 'user/{id}',
+                'path' => 'user/{id}',
             ],
             [
                 'method' => 'GET',
-                'path'   => 'article',
+                'path' => 'article',
             ],
         ]);
 

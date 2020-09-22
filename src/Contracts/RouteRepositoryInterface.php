@@ -1,9 +1,10 @@
 <?php
 
-namespace Asvae\ApiTester\Contracts;
+namespace Craftisan\ApiTester\Contracts;
 
 interface RouteRepositoryInterface
 {
+
     /**
      * @param array $match
      * @param array $except

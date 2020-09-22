@@ -1,14 +1,14 @@
 <?php
 
-namespace Asvae\ApiTester\Collections;
+namespace Craftisan\ApiTester\Collections;
 
-use Asvae\ApiTester\Entities\RequestEntity;
+use Craftisan\ApiTester\Entities\RequestEntity;
 use Illuminate\Support\Collection;
 
 /**
  * Class RequestCollection
  *
- * @package \Asvae\ApiTester
+ * @package \Craftisan\ApiTester
  */
 class RequestCollection extends Collection
 {
@@ -18,7 +18,7 @@ class RequestCollection extends Collection
      *
      * @param string $id
      *
-     * @return \Asvae\ApiTester\Entities\RequestEntity|null
+     * @return \Craftisan\ApiTester\Entities\RequestEntity|null
      */
     public function find($id)
     {
@@ -28,9 +28,9 @@ class RequestCollection extends Collection
     /**
      * Put new RequestEntity to collection.
      *
-     * @param \Asvae\ApiTester\Entities\RequestEntity $request
+     * @param \Craftisan\ApiTester\Entities\RequestEntity $request
      *
-     * @return \Asvae\ApiTester\Entities\RequestEntity
+     * @return \Craftisan\ApiTester\Entities\RequestEntity
      */
     public function insert(RequestEntity $request)
     {
@@ -43,6 +43,7 @@ class RequestCollection extends Collection
      * Load data to collection.
      *
      * @param $data
+     *
      * @return static
      */
     public function load($data)
@@ -78,7 +79,8 @@ class RequestCollection extends Collection
      *
      * @return static
      */
-    public function onlyNotMarkedToDelete(){
+    public function onlyNotMarkedToDelete()
+    {
         return $this->filter(function (RequestEntity $request) {
             return $request->notMarkedToDelete();
         });

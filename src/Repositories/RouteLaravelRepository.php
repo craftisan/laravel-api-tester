@@ -1,16 +1,17 @@
 <?php
 
-namespace Asvae\ApiTester\Repositories;
+namespace Craftisan\ApiTester\Repositories;
 
-use Asvae\ApiTester\Collections\RouteCollection;
-use Asvae\ApiTester\Contracts\RouteRepositoryInterface;
-use Asvae\ApiTester\Entities\RouteInfo;
+use Craftisan\ApiTester\Collections\RouteCollection;
+use Craftisan\ApiTester\Contracts\RouteRepositoryInterface;
+use Craftisan\ApiTester\Entities\RouteInfo;
 use Illuminate\Routing\Router;
 
 class RouteLaravelRepository implements RouteRepositoryInterface
 {
+
     /**
-     * @type \Asvae\ApiTester\Collections\RouteCollection
+     * @type \Craftisan\ApiTester\Collections\RouteCollection
      */
     protected $routes;
 
@@ -28,7 +29,7 @@ class RouteLaravelRepository implements RouteRepositoryInterface
      * @param array $match
      * @param array $except
      *
-     * @return \Asvae\ApiTester\Collections\RouteCollection
+     * @return \Craftisan\ApiTester\Collections\RouteCollection
      */
     public function get($match = [], $except = [])
     {

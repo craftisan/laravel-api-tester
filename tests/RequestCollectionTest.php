@@ -1,10 +1,12 @@
 <?php
-use Asvae\ApiTester\Collections\RequestCollection;
-use Asvae\ApiTester\Entities\RequestEntity;
+
+use Craftisan\ApiTester\Collections\RequestCollection;
+use Craftisan\ApiTester\Entities\RequestEntity;
 use Mockery as m;
 
 class RequestCollectionTest extends TestCase
 {
+
     /**
      * @type RequestCollection
      */
@@ -20,19 +22,19 @@ class RequestCollectionTest extends TestCase
      */
     protected $requestsCount;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->requests = new RequestCollection();
         $this->requestsCount = 10;
         $this->exampleRequest = [
-            'path'    => 'example/{param}',
+            'path' => 'example/{param}',
             'headers' => [],
-            'body'    => [],
+            'body' => [],
         ];
     }
 
     /**
-     * @covers Asvae\ApiTester\Collections\RequestCollection::load()
+     * @covers Craftisan\ApiTester\Collections\RequestCollection::load()
      */
     public function testLoad()
     {
@@ -44,7 +46,7 @@ class RequestCollectionTest extends TestCase
     }
 
     /**
-     * @covers Asvae\ApiTester\Collections\RequestCollection::find()
+     * @covers Craftisan\ApiTester\Collections\RequestCollection::find()
      */
     public function testFind()
     {
@@ -57,16 +59,16 @@ class RequestCollectionTest extends TestCase
     }
 
     /**
-     * @covers Asvae\ApiTester\Collections\RequestCollection::insert()
+     * @covers Craftisan\ApiTester\Collections\RequestCollection::insert()
      */
     public function testInsert()
     {
         $this->hydrateRequest();
         $request = m::mock(RequestEntity::class)->shouldReceive([
-                'getId'        => 5,
-                'offsetGet'    => 5,
-                'offsetExists' => true,
-            ])->andSet('id', 5)->mock();
+            'getId' => 5,
+            'offsetGet' => 5,
+            'offsetExists' => true,
+        ])->andSet('id', 5)->mock();
 
         $this->requests->insert($request);
         $foundRequest = $this->requests->where('id', $request['id'])->first();
@@ -86,7 +88,7 @@ class RequestCollectionTest extends TestCase
         for ($i = 1; $i <= $this->requestsCount; $i++) {
 
             $request = [
-                'id'   => $i,
+                'id' => $i,
                 'path' => str_replace('{param}', $i,
                     $this->exampleRequest['path']),
             ];

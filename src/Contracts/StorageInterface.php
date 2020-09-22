@@ -1,13 +1,13 @@
 <?php
 
-namespace Asvae\ApiTester\Contracts;
+namespace Craftisan\ApiTester\Contracts;
 
-use Asvae\ApiTester\Collections\RequestCollection;
+use Craftisan\ApiTester\Collections\RequestCollection;
 
 /**
  * Class StorageInterface
  *
- * @package \Asvae\ApiTester\Contracts
+ * @package \Craftisan\ApiTester\Contracts
  */
 interface StorageInterface
 {
@@ -23,6 +23,7 @@ interface StorageInterface
      * Put data to resource.
      *
      * @param $data RequestCollection
+     *
      * @return void
      */
     public function put(RequestCollection $data);

@@ -1,9 +1,9 @@
 <?php
 
-namespace Asvae\ApiTester\Storages;
+namespace Craftisan\ApiTester\Storages;
 
-use Asvae\ApiTester\Collections\RequestCollection;
-use Asvae\ApiTester\Contracts\StorageInterface;
+use Craftisan\ApiTester\Collections\RequestCollection;
+use Craftisan\ApiTester\Contracts\StorageInterface;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Filesystem\Filesystem;
@@ -11,10 +11,11 @@ use Illuminate\Filesystem\Filesystem;
 /**
  * Class JsonStorage
  *
- * @package \Asvae\ApiTester
+ * @package \Craftisan\ApiTester
  */
 class JsonStorage implements StorageInterface
 {
+
     const ROW_DELIMITER = "\n";
 
     /**
@@ -54,7 +55,7 @@ class JsonStorage implements StorageInterface
         $this->collection = $collection;
         $path = explode('/', $path);
         $this->filename = array_pop($path);
-        $this->path = implode('/'.$path);
+        $this->path = implode('/', $path);
     }
 
     /**
@@ -106,6 +107,7 @@ class JsonStorage implements StorageInterface
 
     /**
      * @param RequestCollection $data
+     *
      * @return void
      */
     public function put(RequestCollection $data)
@@ -191,6 +193,7 @@ class JsonStorage implements StorageInterface
 
     /**
      * @param array $data
+     *
      * @return RequestCollection
      */
     private function makeCollection($data = [])

@@ -1,12 +1,11 @@
 <?php
 
-namespace Asvae\ApiTester\Providers;
+namespace Craftisan\ApiTester\Providers;
 
-
-use Asvae\ApiTester\Collections\RouteCollection;
-use Asvae\ApiTester\Contracts\RequestRepositoryInterface;
-use Asvae\ApiTester\Contracts\RouteRepositoryInterface;
-use Asvae\ApiTester\Repositories\RouteRepository;
+use Craftisan\ApiTester\Collections\RouteCollection;
+use Craftisan\ApiTester\Contracts\RequestRepositoryInterface;
+use Craftisan\ApiTester\Contracts\RouteRepositoryInterface;
+use Craftisan\ApiTester\Repositories\RouteRepository;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,7 +18,6 @@ class RepositoryServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = true;
-
 
     /**
      * Register the service provider.
@@ -44,7 +42,6 @@ class RepositoryServiceProvider extends ServiceProvider
             config('api-tester.request_repository')
         );
     }
-
 
     /**
      * Get the services provided by the provider.

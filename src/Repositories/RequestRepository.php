@@ -1,35 +1,34 @@
 <?php
 
-namespace Asvae\ApiTester\Repositories;
+namespace Craftisan\ApiTester\Repositories;
 
-use Asvae\ApiTester\Collections\RequestCollection;
-use Asvae\ApiTester\Contracts\RequestRepositoryInterface;
-use Asvae\ApiTester\Contracts\StorageInterface;
-use Asvae\ApiTester\Entities\RequestEntity;
-use Illuminate\Filesystem\Filesystem;
-
+use Craftisan\ApiTester\Contracts\RequestRepositoryInterface;
+use Craftisan\ApiTester\Contracts\StorageInterface;
+use Craftisan\ApiTester\Entities\RequestEntity;
 
 /**
  * Class DefaultRequestRepository
  *
- * @package \Asvae\ApiTester
+ * @package \Craftisan\ApiTester
  */
 class RequestRepository implements RequestRepositoryInterface
 {
+
     /**
-     * @type \Asvae\ApiTester\Collections\RequestCollection
+     * @type \Craftisan\ApiTester\Collections\RequestCollection
      */
     protected $requests;
 
     /**
-     * @type \Asvae\ApiTester\Contracts\StorageInterface
+     * @type \Craftisan\ApiTester\Contracts\StorageInterface
      */
     protected $storage;
 
     /**
      * RequestRepository constructor.
      *
-     * @param \Asvae\ApiTester\Contracts\StorageInterface $storage
+     * @param \Craftisan\ApiTester\Contracts\StorageInterface $storage
+     *
      * @internal param RequestCollection $requests
      */
     public function __construct(StorageInterface $storage)
@@ -76,7 +75,7 @@ class RequestRepository implements RequestRepositoryInterface
     }
 
     /**
-     * @param \Asvae\ApiTester\Entities\RequestEntity $request
+     * @param \Craftisan\ApiTester\Entities\RequestEntity $request
      *
      * @return mixed
      */

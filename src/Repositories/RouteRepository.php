@@ -1,24 +1,25 @@
 <?php
 
-namespace Asvae\ApiTester\Repositories;
+namespace Craftisan\ApiTester\Repositories;
 
-use Asvae\ApiTester\Collections\RouteCollection;
-use Asvae\ApiTester\Contracts\RouteRepositoryInterface;
+use Craftisan\ApiTester\Collections\RouteCollection;
+use Craftisan\ApiTester\Contracts\RouteRepositoryInterface;
 
 /**
  * Class RouteRepository
  *
- * @package \Asvae\ApiTester\Repositories
+ * @package \Craftisan\ApiTester\Repositories
  */
 class RouteRepository implements RouteRepositoryInterface
 {
+
     /**
-     * @type \Asvae\ApiTester\Contracts\RouteRepositoryInterface[]
+     * @type \Craftisan\ApiTester\Contracts\RouteRepositoryInterface[]
      */
     protected $repositories;
 
     /**
-     * @type \Asvae\ApiTester\Collections\RouteCollection
+     * @type \Craftisan\ApiTester\Collections\RouteCollection
      */
     protected $routes;
 

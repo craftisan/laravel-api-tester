@@ -1,8 +1,10 @@
 <?php
 
-namespace Asvae\Exceptions;
+namespace Craftisan\Exceptions;
 
-class ApiTesterException extends \RuntimeException
+use RuntimeException;
+
+class ApiTesterException extends RuntimeException
 {
 
 }

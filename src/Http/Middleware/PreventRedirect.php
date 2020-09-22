@@ -1,12 +1,13 @@
 <?php
 
-namespace Asvae\ApiTester\Http\Middleware;
+namespace Craftisan\ApiTester\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 
 class PreventRedirect
 {
+
     const CATCH_REDIRECT_HEADER = 'catch-redirect';
 
     public function handle(Request $request, Closure $next)
@@ -24,10 +25,12 @@ class PreventRedirect
                 /**
                  * @var \Symfony\Component\HttpFoundation\RedirectResponse $response
                  */
-                return response()->json(['data' => [
-                    'location' => $response->getTargetUrl(),
-                    'status' => $response->getStatusCode(),
-                ]])->header('X-Api-Tester', 'redirect');
+                return response()->json([
+                    'data' => [
+                        'location' => $response->getTargetUrl(),
+                        'status' => $response->getStatusCode(),
+                    ],
+                ])->header('X-Api-Tester', 'redirect');
             }
         }
 

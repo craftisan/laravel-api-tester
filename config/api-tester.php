@@ -12,8 +12,7 @@ return [
     |
     */
 
-    'enabled' => env('APP_DEBUG', false),
-
+    'enabled' => env('API_TESTER', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +25,6 @@ return [
     */
 
     'route' => 'api-tester',
-
 
     /*
     |--------------------------------------------------------------------------
@@ -58,7 +56,6 @@ return [
     */
 
     'route_meta' => true,
-
 
     /*
     |--------------------------------------------------------------------------
@@ -123,8 +120,8 @@ return [
     */
 
     'route_repositories' => [
-        Asvae\ApiTester\Repositories\RouteLaravelRepository::class,
-        //Asvae\ApiTester\Repositories\RouteDingoRepository::class,
+        Craftisan\ApiTester\Repositories\RouteLaravelRepository::class,
+        //Craftisan\ApiTester\Repositories\RouteDingoRepository::class,
     ],
 
     /*
@@ -135,13 +132,13 @@ return [
     |
     */
 
-    'request_repository' => Asvae\ApiTester\Repositories\RequestRepository::class,
+    'request_repository' => Craftisan\ApiTester\Repositories\RequestRepository::class,
 
     /*
     |--------------------------------------------------------------------------
-    | Asvae\ApiTester\Repositories\RequestRepository configuration
+    | Craftisan\ApiTester\Repositories\RequestRepository configuration
     |--------------------------------------------------------------------------
-    | This config matters only when using Asvae\ApiTester\Repositories\RequestRepository
+    | This config matters only when using Craftisan\ApiTester\Repositories\RequestRepository
     | or similar implementations.
     |
     */
@@ -150,13 +147,13 @@ return [
 
     'storage_drivers' => [
         'file' => [
-            'class' => Asvae\ApiTester\Storages\JsonStorage::class,
+            'class' => Craftisan\ApiTester\Storages\JsonStorage::class,
             'options' => [
-                'path' => 'storage/api-tester/requests.db'
-            ]
+                'path' => 'storage/api-tester/requests.db',
+            ],
         ],
         'firebase' => [
-            'class' => Asvae\ApiTester\Storages\FireBaseStorage::class,
+            'class' => Craftisan\ApiTester\Storages\FireBaseStorage::class,
             'options' => [
                 'base' => env('API_TESTER_FIREBASE_ADDRESS', 'https://example.firebaseio.com/api-tester/'),
             ],
@@ -164,7 +161,7 @@ return [
                 'secret' => env('API_TESTER_FIREBASE_SECRET', '<your-secret-api-key>'),
                 'options' => ['admin' => true],
                 'data' => [],
-            ]
-        ]
-    ]
+            ],
+        ],
+    ],
 ];

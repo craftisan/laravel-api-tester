@@ -6,13 +6,12 @@
  * Time: 18:54
  */
 
-namespace Asvae\ApiTester\Providers;
+namespace Craftisan\ApiTester\Providers;
 
-
-use Asvae\ApiTester\Collections\RequestCollection;
-use Asvae\ApiTester\Contracts\StorageInterface;
-use Asvae\ApiTester\Storages\FireBaseStorage;
-use Asvae\ApiTester\Storages\JsonStorage;
+use Craftisan\ApiTester\Collections\RequestCollection;
+use Craftisan\ApiTester\Contracts\StorageInterface;
+use Craftisan\ApiTester\Storages\FireBaseStorage;
+use Craftisan\ApiTester\Storages\JsonStorage;
 use Firebase\Token\TokenGenerator;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Filesystem\Filesystem;
@@ -43,14 +42,14 @@ class StorageServiceProvide extends ServiceProvider
             $driverClassName = config('api-tester.storage_drivers')[$selectedDriver];
             $requestCollection = $app->make(RequestCollection::class);
 
-            if ($selectedDriver === 'firebase'){
+            if ($selectedDriver === 'firebase') {
                 $tokenGenerator = $app->make(TokenGenerator::class);
                 $base = config('api-tester.storage_drivers.firebase.options.base');
 
                 return new FireBaseStorage($requestCollection, $tokenGenerator, $base);
             }
 
-            if ($selectedDriver === 'file'){
+            if ($selectedDriver === 'file') {
                 $fileSystem = $app->make(Filesystem::class);
                 $path = config('api-tester.storage_drivers.file.options.path');
 
@@ -64,6 +63,7 @@ class StorageServiceProvide extends ServiceProvider
         // чтобы не конфликтовать с пользовательским генератором токенов.
         $this->app->singleton('api-tester.token_generator', function (Container $app) {
             $config = $app['config']['api-tester.storage_drivers.firebase.token'];
+
             return (new TokenGenerator($config['secret']))
                 ->setOptions($config['options'])
                 ->setData($config['data']);

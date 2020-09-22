@@ -1,6 +1,6 @@
 <?php
 
-namespace Asvae\Exceptions;
+namespace Craftisan\Exceptions;
 
 class FireBaseException extends ApiTesterException
 {

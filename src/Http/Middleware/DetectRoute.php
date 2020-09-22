@@ -1,9 +1,9 @@
 <?php
 
-namespace Asvae\ApiTester\Http\Middleware;
+namespace Craftisan\ApiTester\Http\Middleware;
 
-use Asvae\ApiTester\Entities\RouteInfo;
 use Closure;
+use Craftisan\ApiTester\Entities\RouteInfo;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Events\RouteMatched;
@@ -11,10 +11,11 @@ use Illuminate\Routing\Events\RouteMatched;
 /**
  * Class DetectRouteMiddleware
  *
- * @package \Asvae\ApiTester\Http\Middleware
+ * @package \Craftisan\ApiTester\Http\Middleware
  */
 class DetectRoute
 {
+
     const ROUTE_INFO = 'route-info';
 
     /**
@@ -46,7 +47,8 @@ class DetectRoute
         return $next($request);
     }
 
-    public function handleMatchedRoute($route){
+    public function handleMatchedRoute($route)
+    {
         response()->json([
             'data' => new RouteInfo($route),
         ])->send();

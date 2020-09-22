@@ -1,9 +1,8 @@
 <?php
 
-namespace Asvae\ApiTester\Providers;
+namespace Craftisan\ApiTester\Providers;
 
-
-use Asvae\ApiTester\View\Composers\ApiTesterComposer;
+use Craftisan\ApiTester\View\Composers\ApiTesterComposer;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 

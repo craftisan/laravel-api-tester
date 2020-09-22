@@ -1,21 +1,27 @@
 {
-    "name": "asvae/laravel-api-tester",
+    "name": "craftisan/laravel-api-tester",
     "description": "Api tester for Laravel Framework",
-    "keywords": ["laravel", "api", "debug"],
+    "keywords": [
+        "laravel",
+        "api",
+        "debug",
+        "laravel api tester"
+    ],
     "license": "MIT",
     "authors": [
         {
-            "name": "Yauheni Prakopchyk",
-            "email": "ontrew@gmail.com"
+            "name": "Deekshant Joshi",
+            "email": "deekshant.joshi@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "php": "^7.2.5",
+        "ext-json": "*"
     },
     "require-dev": {
-        "laravel/framework": "5.2.*",
-        "phpunit/phpunit": "~4.0",
-        "mockery/mockery": "^0.9.5"
+        "laravel/framework": "^7.0",
+        "phpunit/phpunit": "^8.5",
+        "mockery/mockery": "^1.3.1"
     },
     "suggest": {
         "ktamas77/firebase-php": "Keep your requests stored in cloud",
@@ -28,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Asvae\\ApiTester\\": "src/"
+            "Craftisan\\ApiTester\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Asvae\\ApiTester\\ServiceProvider"
+                "Craftisan\\ApiTester\\ServiceProvider"
             ]
         }
     }

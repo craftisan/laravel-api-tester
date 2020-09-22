@@ -1,30 +1,31 @@
 <?php
 
-namespace Asvae\ApiTester\Http\Controllers;
+namespace Craftisan\ApiTester\Http\Controllers;
 
-use Asvae\ApiTester\Contracts\RequestRepositoryInterface;
-use Asvae\ApiTester\Entities\RequestEntity;
-use Asvae\ApiTester\Http\Requests\StoreRequest;
-use Asvae\ApiTester\Http\Requests\UpdateRequest;
+use Craftisan\ApiTester\Contracts\RequestRepositoryInterface;
+use Craftisan\ApiTester\Entities\RequestEntity;
+use Craftisan\ApiTester\Http\Requests\StoreRequest;
+use Craftisan\ApiTester\Http\Requests\UpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 /**
  * Class RequestController
  *
- * @package \Asvae\ApiTester\Http\Controllers
+ * @package \Craftisan\ApiTester\Http\Controllers
  */
 class RequestController extends Controller
 {
+
     /**
-     * @type \Asvae\ApiTester\Contracts\RequestRepositoryInterface
+     * @type \Craftisan\ApiTester\Contracts\RequestRepositoryInterface
      */
     protected $repository;
 
     /**
      * RequestController constructor.
      *
-     * @param \Asvae\ApiTester\Contracts\RequestRepositoryInterface $repository
+     * @param \Craftisan\ApiTester\Contracts\RequestRepositoryInterface $repository
      */
     public function __construct(RequestRepositoryInterface $repository)
     {
@@ -43,7 +44,7 @@ class RequestController extends Controller
 
     /**
      *
-     * @param \Asvae\ApiTester\Http\Requests\StoreRequest $storeRequest
+     * @param \Craftisan\ApiTester\Http\Requests\StoreRequest $storeRequest
      *
      * @return \Illuminate\Http\Response
      */
@@ -61,13 +62,14 @@ class RequestController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function destroy(Request $request)
     {
         $id = $request->id;
 
-        if (! $this->repository->exists($id)) {
+        if (!$this->repository->exists($id)) {
             return response(null, 404);
         }
 
@@ -79,8 +81,8 @@ class RequestController extends Controller
     }
 
     /**
-     * @param \Asvae\ApiTester\Http\Requests\UpdateRequest $request
-     * @param  string                                      $request
+     * @param \Craftisan\ApiTester\Http\Requests\UpdateRequest $request
+     * @param string $request
      *
      * @return \Illuminate\Http\Response
      * @internal param int $id
