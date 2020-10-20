@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'route' => 'api-tester',
+    'route' => env('API_TESTER_ROUTE', 'api-tester'),
 
     /*
     |--------------------------------------------------------------------------
@@ -107,7 +107,7 @@ return [
 
     'include' => '.*',
     'exclude' => [
-        'api-tester',
+        env('API_TESTER_ROUTE', 'api-tester'),
     ],
 
     /*
