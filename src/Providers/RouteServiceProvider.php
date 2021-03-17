@@ -6,6 +6,8 @@ use Craftisan\ApiTester\Http\Middleware\DetectRoute;
 use Craftisan\ApiTester\Http\Middleware\PreventRedirect;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -51,6 +53,11 @@ class RouteServiceProvider extends ServiceProvider
         // so that laravel can tell us, which route the request belongs to.
         $kernel->prependMiddleware(DetectRoute::class);
         $kernel->prependMiddleware(PreventRedirect::class);
+
+        // Check if the api-tester needs to be served over HTTPS url scheme
+        if (!Request::expectsJson() && boolval(config('api-tester.https'))) {
+            URL::forceScheme('https');
+        }
     }
 
     protected function getMiddleware()

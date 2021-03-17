@@ -28,6 +28,15 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | HTTP/HTTPS
+    |--------------------------------------------------------------------------
+    |
+    | Set if the api tester will be served over https url scheme
+    */
+    'https' => env('API_TESTER_HTTPS', true),
+
+    /*
+    |--------------------------------------------------------------------------
     | Middleware
     |--------------------------------------------------------------------------
     |
@@ -143,22 +152,23 @@ return [
     |
     */
 
-    'storage_driver' => 'file',
+    'storage_driver' => env('API_TESTER_STORAGE', 'file'),
 
     'storage_drivers' => [
         'file' => [
             'class' => Craftisan\ApiTester\Storages\JsonStorage::class,
             'options' => [
-                'path' => 'storage/api-tester/requests.db',
+                'path' => storage_path('api-tester/requests.db'),
             ],
         ],
         'firebase' => [
             'class' => Craftisan\ApiTester\Storages\FireBaseStorage::class,
             'options' => [
                 'base' => env('API_TESTER_FIREBASE_ADDRESS', 'https://example.firebaseio.com/api-tester/'),
+                // sample value https://example.firebaseio.com/api-tester/
             ],
             'token' => [
-                'secret' => env('API_TESTER_FIREBASE_SECRET', '<your-secret-api-key>'),
+                'secret' => env('API_TESTER_FIREBASE_SECRET', ''),
                 'options' => ['admin' => true],
                 'data' => [],
             ],

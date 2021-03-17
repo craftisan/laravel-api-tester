@@ -2,9 +2,11 @@
 
 namespace Craftisan\ApiTester\Repositories;
 
+use Craftisan\ApiTester\Collections\RequestCollection;
 use Craftisan\ApiTester\Contracts\RequestRepositoryInterface;
 use Craftisan\ApiTester\Contracts\StorageInterface;
 use Craftisan\ApiTester\Entities\RequestEntity;
+use Illuminate\Support\Str;
 
 /**
  * Class DefaultRequestRepository
@@ -15,19 +17,19 @@ class RequestRepository implements RequestRepositoryInterface
 {
 
     /**
-     * @type \Craftisan\ApiTester\Collections\RequestCollection
+     * @type RequestCollection
      */
     protected $requests;
 
     /**
-     * @type \Craftisan\ApiTester\Contracts\StorageInterface
+     * @type StorageInterface
      */
     protected $storage;
 
     /**
      * RequestRepository constructor.
      *
-     * @param \Craftisan\ApiTester\Contracts\StorageInterface $storage
+     * @param StorageInterface $storage
      *
      * @internal param RequestCollection $requests
      */
@@ -75,13 +77,11 @@ class RequestRepository implements RequestRepositoryInterface
     }
 
     /**
-     * @param \Craftisan\ApiTester\Entities\RequestEntity $request
-     *
-     * @return mixed
+     * @param RequestEntity $request
      */
     public function persist(RequestEntity $request)
     {
-        $request->setId(str_random());
+        $request->setId(Str::random());
         $this->requests->insert($request);
     }
 

@@ -8,7 +8,6 @@ use Craftisan\ApiTester\Entities\RequestEntity;
 use Craftisan\Exceptions\FireBaseException;
 use Firebase\FirebaseLib;
 use Firebase\Token\TokenGenerator;
-use Symfony\Component\Debug\Exception\ClassNotFoundException;
 
 class FireBaseStorage implements StorageInterface
 {
