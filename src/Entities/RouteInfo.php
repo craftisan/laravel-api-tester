@@ -4,11 +4,13 @@ namespace Craftisan\ApiTester\Entities;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
 use JsonSerializable;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionFunction;
+use ReflectionFunctionAbstract;
 use ReflectionMethod;
 
 /**
@@ -18,12 +20,12 @@ class RouteInfo implements Arrayable, JsonSerializable
 {
 
     /**
-     * @var \ReflectionFunctionAbstract|null
+     * @var ReflectionFunctionAbstract|null
      */
     protected $routeReflection = null;
 
     /**
-     * @var \ReflectionClass|null
+     * @var ReflectionClass|null
      */
     protected $actionReflection = null;
 
@@ -43,7 +45,7 @@ class RouteInfo implements Arrayable, JsonSerializable
     protected $addMeta;
 
     /**
-     * @var \Illuminate\Routing\Route
+     * @var Route
      */
     private $route;
 
@@ -154,7 +156,7 @@ class RouteInfo implements Arrayable, JsonSerializable
             }
 
             // Если это форм-реквест.
-            if (is_subclass_of($class->name, FormRequest::class && $this->analyzeRequests)) {
+            if (is_subclass_of($class->name, FormRequest::class) && $this->analyzeRequests) {
 
                 // Для вызова нестатического метода на объекте, нам необходим инстанс объекта.
                 // Мы используем build вместо make, чтобы избежать автоматического запуска валидации.
@@ -183,7 +185,7 @@ class RouteInfo implements Arrayable, JsonSerializable
     }
 
     /**
-     * @return \ReflectionFunctionAbstract|null
+     * @return ReflectionFunctionAbstract|null
      */
     protected function getActionReflection()
     {
